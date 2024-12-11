@@ -1,7 +1,9 @@
 import { useEffect } from 'react'
 import './App.css'
+import { useGetProducts } from './state-hooks/useGetProducts'
+import { ProductList } from './components/ProductList'
 
-const PAGE_TITLE = 'Example Vite App'
+const PAGE_TITLE = 'Product list'
 
 function App() {
   /**
@@ -14,13 +16,15 @@ function App() {
     document.title = PAGE_TITLE
   }, [])
 
+  const {data: products, isError, error, isPending } =  useGetProducts();
+
   return (
     <>
       <header>
         <h1>{PAGE_TITLE}</h1>
       </header>
       <main>
-        todo
+        { isError ? error.message : isPending ? 'Loading' : <ProductList products={products} />}
       </main>
     </>
   )

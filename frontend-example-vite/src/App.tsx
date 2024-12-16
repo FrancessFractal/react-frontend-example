@@ -1,7 +1,6 @@
 import { useEffect } from 'react'
-import { useGetProducts } from './state-hooks/useGetProducts'
 import { ProductList } from './components/ProductList'
-import { Heading, Spinner } from '@radix-ui/themes'
+import { Heading } from '@radix-ui/themes'
 
 const PAGE_TITLE = 'Product list'
 
@@ -16,15 +15,13 @@ function App() {
     document.title = PAGE_TITLE
   }, [])
 
-  const {data: products, isError, error, isPending } =  useGetProducts();
-
   return (
     <>
       <header>
         <Heading as='h1'>{PAGE_TITLE}</Heading>
       </header>
       <main>
-        { isError ? error.message : isPending ? <Spinner /> : <ProductList products={products} />}
+        <ProductList />
       </main>
     </>
   )

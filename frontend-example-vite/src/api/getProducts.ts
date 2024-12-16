@@ -1,7 +1,9 @@
 import { Product } from "../models/Product";
 
-const getProducts = async (): Promise<{ products: Product[], total: number, skip: number, limit: number }> => {
-    const response = await fetch(`https://dummyjson.com/products`)
+const PAGE_SIZE = 12
+
+const getProducts = async ({start}: { start: number }): Promise<{ products: Product[], total: number, skip: number, limit: number }> => {
+    const response = await fetch(`https://dummyjson.com/products?limit=${PAGE_SIZE}&skip=${start}`)
     if (!response.ok) {
         throw Error('There was a problem loading the product list.')
     }
@@ -18,8 +20,8 @@ const getProducts = async (): Promise<{ products: Product[], total: number, skip
 
 // todo: remove this later
 // using this for now to add stuff to simulate slow api calls, errors, etc for testing
-export default () => new Promise<{ products: Product[], total: number, skip: number, limit: number }>((resolve) => {
+export default ({start}: { start: number }) => new Promise<{ products: Product[], total: number, skip: number, limit: number }>((resolve) => {
     setTimeout(() => {
-        resolve(getProducts())
+        resolve(getProducts({start}))
     }, 1000)
 });

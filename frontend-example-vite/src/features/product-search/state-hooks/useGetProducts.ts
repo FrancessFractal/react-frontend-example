@@ -1,6 +1,6 @@
 import { InfiniteData, QueryKey, useInfiniteQuery } from "@tanstack/react-query"
-import { Product } from "../models/Product"
-import getProducts from "../api/getProducts"
+import { Product } from "../../../models/Product"
+import getProducts from "../../../api/getProducts"
 
 export const UseGetProductsQueryKey = () => ['useGetProducts']
 

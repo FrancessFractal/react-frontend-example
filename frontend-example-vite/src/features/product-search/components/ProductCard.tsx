@@ -1,4 +1,4 @@
-import { Product } from "../models/Product";
+import { Product } from "../../../models/Product";
 import { Card, Flex, Heading, Inset, Text } from "@radix-ui/themes"
 
 export function ProductCard({ product }: { product: Product }) {

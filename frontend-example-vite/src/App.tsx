@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { ProductList } from './components/ProductList'
+import { ProductList } from './features/product-search/components/ProductList'
 import { Heading } from '@radix-ui/themes'
 
 const PAGE_TITLE = 'Product list'

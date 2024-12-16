@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
-import './App.css'
 import { useGetProducts } from './state-hooks/useGetProducts'
 import { ProductList } from './components/ProductList'
+import { Heading, Spinner } from '@radix-ui/themes'
 
 const PAGE_TITLE = 'Product list'
 
@@ -21,10 +21,10 @@ function App() {
   return (
     <>
       <header>
-        <h1>{PAGE_TITLE}</h1>
+        <Heading as='h1'>{PAGE_TITLE}</Heading>
       </header>
       <main>
-        { isError ? error.message : isPending ? 'Loading' : <ProductList products={products} />}
+        { isError ? error.message : isPending ? <Spinner /> : <ProductList products={products} />}
       </main>
     </>
   )

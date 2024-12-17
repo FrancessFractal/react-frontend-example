@@ -1,7 +1,7 @@
 import { MouseEventHandler, useCallback } from "react";
 import { useGetProducts } from "../state-hooks/useGetProducts";
 import { ProductCard } from "./ProductCard";
-import { Button, Grid, Spinner } from "@radix-ui/themes";
+import { Button, Flex, Grid, Spinner } from "@radix-ui/themes";
 
 export function ProductList () {
     const {
@@ -18,7 +18,7 @@ export function ProductList () {
 
     return isError ? error.message 
         : isPending ? <Spinner /> 
-        : <>
+        : <Flex direction='column' gap='3'>
             <Grid columns='3' gap='3' maxWidth='750px'>
                 {data.pages.map(
                     page => page.products.map(
@@ -35,5 +35,5 @@ export function ProductList () {
                     {isFetchingNextPage ? <Spinner /> : 'Load More'}
                 </Button>
             }
-        </>
+        </Flex>
 }

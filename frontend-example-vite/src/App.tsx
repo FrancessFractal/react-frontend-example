@@ -1,6 +1,9 @@
 import { useEffect } from 'react'
 import { ProductList } from './features/product-search/components/ProductList'
-import { Heading } from '@radix-ui/themes'
+import { Flex, Heading } from '@radix-ui/themes'
+import ProductSearchControls from './features/product-search/components/ProductSearchControls'
+import { ProductSearchStateProvider } from './features/product-search/state/ProductSearchStateProvider'
+
 
 const PAGE_TITLE = 'Product list'
 
@@ -21,7 +24,12 @@ function App() {
         <Heading as='h1'>{PAGE_TITLE}</Heading>
       </header>
       <main>
-        <ProductList />
+        <ProductSearchStateProvider>
+          <Flex direction='row' gap='6'>
+            <ProductSearchControls />
+            <ProductList />
+          </Flex>
+        </ProductSearchStateProvider>
       </main>
     </>
   )

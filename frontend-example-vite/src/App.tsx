@@ -1,6 +1,6 @@
-import { useEffect } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { ProductList } from './features/product-search/components/ProductList'
-import { Flex, Heading } from '@radix-ui/themes'
+import { Button, Flex, Heading, Theme } from '@radix-ui/themes'
 import ProductSearchControls from './features/product-search/components/ProductSearchControls'
 import { ProductSearchStateProvider } from './features/product-search/state/ProductSearchStateProvider'
 
@@ -18,11 +18,19 @@ function App() {
     document.title = PAGE_TITLE
   }, [])
 
+  const [appearance, setAppearance] = useState<'light' | 'dark'>('light');
+  const toggleAppearance = useCallback(() => {
+    setAppearance(appearance === 'light' ? 'dark' : 'light')
+  }, [appearance])
+
   return (
-    <>
+    <Theme appearance={appearance}>
       <header>
-        <Heading as='h1'>{PAGE_TITLE}</Heading>
-      </header>
+        <Flex direction='row' justify='between'>
+          <Heading as='h1'>{PAGE_TITLE}</Heading>
+          <Button onClick={toggleAppearance}>{appearance === 'light' ? 'Dark mode' : 'Light mode'}</Button>  
+        </Flex>
+        </header>
       <main>
         <ProductSearchStateProvider>
           <Flex direction='row' gap='6'>
@@ -31,7 +39,7 @@ function App() {
           </Flex>
         </ProductSearchStateProvider>
       </main>
-    </>
+    </Theme>
   )
 }
 

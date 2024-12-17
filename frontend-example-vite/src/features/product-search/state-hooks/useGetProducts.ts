@@ -3,7 +3,8 @@ import { Product } from "../../../models/Product"
 import getProducts from "../../../api/getProducts"
 import { ProductSearchState, useProductSearchState } from "../state/ProductSearchContext"
 
-export const UseGetProductsQueryKey = ({ sort, category }: ProductSearchState) => ['useGetProducts', sort, category]
+export const UseGetProductsQueryKey = ({ sort, category, searchTerm }: ProductSearchState) => 
+    ['useGetProducts', sort, category, searchTerm]
 
 type Payload = { products: Product[], total: number, skip: number, limit: number }
 

@@ -6,8 +6,10 @@ export function ProductSearchStateProvider({ children }: { children: ReactNode})
     const [state, setState] = useState<ProductSearchState>({
         sort: PRODUCT_SORT.none,
         category: 'all',
+        searchTerm: '',
         changeSort: () => {},
         changeCategoryFilter: () => {},
+        changeSearchTerm: () => {}
     })
 
     const changeSort = useCallback((value: ProductSort) => {
@@ -18,10 +20,15 @@ export function ProductSearchStateProvider({ children }: { children: ReactNode})
         setState({ ...state, category: value})
     }, [state])
 
+    const changeSearchTerm = useCallback((value: string) => {
+        setState({ ...state, searchTerm: value})
+    }, [state])
+
     return <ProductSearchContext.Provider value={{
         ...state,
         changeSort,
-        changeCategoryFilter
+        changeCategoryFilter,
+        changeSearchTerm,
     }}>
         { children }
     </ProductSearchContext.Provider>

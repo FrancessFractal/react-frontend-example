@@ -10,12 +10,16 @@ export type ProductSort = typeof PRODUCT_SORT[keyof typeof PRODUCT_SORT]
 
 export type ProductSearchState = {
     sort: ProductSort,
-    changeSort: (value: ProductSort) => void
+    category: string,
+    changeSort: (value: ProductSort) => void,
+    changeCategoryFilter: (value: string) => void,
 }
 
 export const ProductSearchContext = createContext<ProductSearchState>({
     sort: PRODUCT_SORT.none,
-    changeSort: () => { }
+    category: 'all',
+    changeSort: () => { },
+    changeCategoryFilter: () => {},
 })
 
 export const useProductSearchState = () => useContext(ProductSearchContext)

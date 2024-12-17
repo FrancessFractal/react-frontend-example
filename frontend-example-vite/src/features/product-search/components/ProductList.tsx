@@ -12,7 +12,7 @@ export function ProductList () {
         hasNextPage,
         fetchNextPage,
         isFetchingNextPage
-    } =  useGetProducts();
+    } = useGetProducts();
 
     const handleLoadMore: MouseEventHandler = useCallback(() => fetchNextPage(), [fetchNextPage]);
 
@@ -21,7 +21,7 @@ export function ProductList () {
         : <Flex direction='column' gap='3'>
             <Grid columns='3' gap='3' maxWidth='750px'>
                 {data.pages.map(
-                    page => page.products.map(
+                    page => page.filteredProducts.map(
                         product => <ProductCard key={product.id} product={product} />
                         )
                     )

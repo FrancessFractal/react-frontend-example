@@ -1,50 +1,38 @@
-# React + TypeScript + Vite
+# Frontend example project
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is an example of a React-based frontend codebase using dummyjson.com as the api providing products to display.
 
-Currently, two official plugins are available:
+## Setup and Running
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
+First, ensure that you are using the correct version of node/npm.
 
 ```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+nvm use
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+Then install all necessary packages
 
 ```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+npm i
 ```
+
+Finally, to run in development mode:
+```js
+npm run dev
+```
+
+Or, to generate a production build
+```js 
+npm run build
+```
+
+## Architecture and design decisions
+
+### Known issues
+
+There are problems when filtering, where sometimes no items are added to the page. For example, searching 'd' under the 'Beauty' category has empty search results with a 'Load More' button. Pressing the button 3 times will finally result in something showing. This is caused by the exercise's requirements needing features unsuppored by they dummyjson api. Specifically, dummyjson doesn't support server-side filtering, so we had to do it client side.
+
+The exercise requirements included pagination, which is done server-side by dummyapi. However, since we are forced to do filtering client-side, there can be some pages in our pagination that don't actually have any relevant products, resulting in loading a page that doesn't render any new items.
+
+I would generally advise against using client-side filtering on paginated data for this reason, and would recommend doing all pagination/filtering/etc either fully server-side or fully client-side (usually server-side for performance reasons). However, for this exercise, I thought it was important to demonstrate frontend management of server-side search results, so I didn't want to just move everything to frontend (even though the dataset is small enough for performance not to be a huge problem). So I chose to combine client-side filtering with server-side searching, resulting in some awkward UX when filtering.
+

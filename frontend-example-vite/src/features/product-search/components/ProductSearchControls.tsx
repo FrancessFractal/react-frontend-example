@@ -2,6 +2,7 @@ import { Flex } from "@radix-ui/themes";
 import { SortControl } from "./SortControl";
 import { CategoryFilterControl } from "./CategoryFilterControl";
 import { SearchTermControl } from "./SearchTermControl";
+import { StatusFilterControl } from "./StatusFilterControl";
 
 function ProductSearchControls() {
 
@@ -9,6 +10,7 @@ function ProductSearchControls() {
         <SearchTermControl />
         <SortControl />
         <CategoryFilterControl />
+        <StatusFilterControl />
     </Flex>
 
 }

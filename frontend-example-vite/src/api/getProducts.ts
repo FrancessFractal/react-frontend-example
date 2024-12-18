@@ -49,10 +49,4 @@ const getProducts = async ({start, sort, category, searchTerm, availability }: {
     }
 };
 
-// todo: remove this later
-// using this for now to add stuff to simulate slow api calls, errors, etc for testing
-export default (args: { start: number, sort: ProductSort, category: string, searchTerm: string, availability: string[] }) => new Promise<{ products: Product[], filteredProducts: Product[], total: number, skip: number, limit: number }>((resolve) => {
-    setTimeout(() => {
-        resolve(getProducts(args))
-    }, 1000)
-});
+export default getProducts;

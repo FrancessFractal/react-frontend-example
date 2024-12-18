@@ -5,7 +5,7 @@ import ProductSearchControls from './features/product-search/components/ProductS
 import { ProductSearchStateProvider } from './features/product-search/state/ProductSearchStateProvider'
 
 
-const PAGE_TITLE = 'Product list'
+const PAGE_TITLE = 'Product list app'
 
 function App() {
   /**

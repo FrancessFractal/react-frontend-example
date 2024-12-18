@@ -12,5 +12,5 @@ export function SearchTermControl() {
         changeSearchTerm(event.target.value)
     }, [changeSearchTerm])
 
-    return <TextField.Root onChange={handleChange} />
+    return <TextField.Root onChange={handleChange} placeholder="Search..." />
 }
